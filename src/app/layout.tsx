@@ -31,6 +31,10 @@ export const metadata: Metadata = {
   description:
     "Veda Solutions Hub is a technology startup building AI-powered and modern digital solutions across AI, cloud, DevOps, software, data, and automation.",
 
+  alternates: {
+  canonical: "/",
+},  
+
   keywords: [
     "Veda Solutions Hub",
     "Veda Solutions Hub startup",

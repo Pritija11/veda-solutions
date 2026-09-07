@@ -14,11 +14,7 @@ export default function OrganizationSchema() {
       addressCountry: "NP",
     },
 
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "016643210",
-      contactType: "customer service",
-    },
+    
   };
 
   return (
