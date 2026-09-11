@@ -1,37 +1,42 @@
 export const insights = [
   {
-    slug: "practical-ai-adoption",
-    title: "A Practical Approach to AI Adoption",
+    slug: "where-ai-creates-value",
+    number: "001",
+    title: "Where AI Actually Creates Business Value",
     excerpt:
-      "Exploring how organizations can identify meaningful opportunities for AI without adding unnecessary complexity.",
-    category: "AI Solutions",
+      "Most AI investments fail to move the needle. A look at where AI genuinely changes outcomes versus where it's just noise.",
+    category: "AI",
   },
   {
-    slug: "ai-powered-automation",
-    title: "AI and the Future of Business Automation",
+    slug: "infrastructure-as-product-problem",
+    number: "002",
+    title: "When Infrastructure Becomes a Product Problem",
     excerpt:
-      "Understanding how AI can complement traditional automation to create more intelligent and adaptive workflows.",
-    category: "AI & Automation",
+      "Cloud architecture decisions eventually surface as user-facing reliability and speed. Here's where that line actually sits.",
+    category: "CLOUD",
   },
   {
-    slug: "cloud-devops-modern-systems",
-    title: "Cloud and DevOps for Modern Digital Systems",
+    slug: "designing-systems-for-growing-businesses",
+    number: "003",
+    title: "Designing Digital Systems for Growing Businesses",
     excerpt:
-      "Exploring how cloud infrastructure and DevOps practices support scalable, reliable, and continuously evolving applications.",
-    category: "Cloud & DevOps",
+      "Software built for ten users behaves differently at ten thousand. Designing for the system you'll need, not just the one you have.",
+    category: "SYSTEMS",
   },
   {
-    slug: "data-foundations-for-ai",
-    title: "Why Strong Data Foundations Matter for AI",
+    slug: "business-data-to-operational-intelligence",
+    number: "004",
+    title: "Turning Business Data Into Operational Intelligence",
     excerpt:
-      "AI capabilities depend on reliable data. This insight explores the relationship between data foundations and useful AI systems.",
-    category: "Data Solutions",
+      "Most companies have more data than they use. The gap is usually pipelines and framing, not a lack of information.",
+    category: "DATA",
   },
   {
-    slug: "building-digital-solutions",
-    title: "Building Digital Solutions That Scale",
+    slug: "software-architecture-outlives-v1",
+    number: "005",
+    title: "Why Software Architecture Outlives Its First Version",
     excerpt:
-      "Looking at the engineering principles that help digital products remain maintainable as users, requirements, and complexity grow.",
-    category: "Software Solutions",
+      "The decisions made in week one of a build are the ones teams live with for years. A practical look at designing for change.",
+    category: "SOFTWARE",
   },
-];
+] as const;

@@ -1,225 +1,131 @@
 "use client";
 
-import { FormEvent, useState } from "react";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
-
-const initialForm = {
-  name: "",
-  email: "",
-  company: "",
-  service: "",
-  message: "",
-};
-
-const services = [
-  "AI Solutions",
-  "Cloud & DevOps",
-  "Software Solutions",
-  "Data Solutions",
-  "Cybersecurity",
-  "Digital Consulting",
-  "Other",
-];
+import { useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
 
 export default function ContactForm() {
-  const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (
-    event: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) => {
-    const { name, value } = event.target;
+  useEffect(() => {
+    if (!submitted) return;
+    const timer = setTimeout(() => setSubmitted(false), 2000);
+    return () => clearTimeout(timer);
+  }, [submitted]);
 
-    setForm((current) => ({
-      ...current,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    e.currentTarget.reset();
     setSubmitted(true);
   };
 
-  if (submitted) {
-    return (
-      <div className="flex min-h-[560px] items-center justify-center rounded-3xl border border-teal-400/20 bg-[#07111F] p-8 text-center sm:p-12">
-        <div className="max-w-md">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-teal-400/20 bg-teal-500/10">
-            <CheckCircle2 className="h-8 w-8 text-teal-400" />
+  return (
+    <div className="veda-tile bg-white p-6 sm:p-8 lg:p-10">
+      <div className="chip bg-[#8FD4F2] text-[#24232B]">Veda / Contact</div>
+      <h2 className="mt-5 font-[family-name:var(--font-sora)] text-2xl font-extrabold text-[#24232B] sm:text-3xl">
+        Tell us what you&apos;re building
+      </h2>
+      <p className="mt-3 text-sm leading-6 text-[#6B6A72]">Share a few details and we&apos;ll get back to you.</p>
+
+      <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div>
+            <label htmlFor="name" className="mb-2 block text-sm font-bold text-[#24232B]">
+              Name <span className="text-[#FF3B30]">*</span>
+            </label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              required
+              placeholder="Your name"
+              className="w-full rounded-xl border-[1.5px] border-[#24232B]/20 bg-[#FFFDF7] px-4 py-3.5 text-sm text-[#24232B] outline-none transition-colors placeholder:text-[#6B6A72]/60 focus:border-[#4E7BFF]"
+            />
           </div>
 
-          <h2 className="mt-7 text-2xl font-semibold text-slate-100">
-            Thanks for reaching out.
-          </h2>
+          <div>
+            <label htmlFor="email" className="mb-2 block text-sm font-bold text-[#24232B]">
+              Email <span className="text-[#FF3B30]">*</span>
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="you@example.com"
+              className="w-full rounded-xl border-[1.5px] border-[#24232B]/20 bg-[#FFFDF7] px-4 py-3.5 text-sm text-[#24232B] outline-none transition-colors placeholder:text-[#6B6A72]/60 focus:border-[#4E7BFF]"
+            />
+          </div>
 
-          <p className="mt-4 text-sm leading-7 text-slate-400">
-            Your enquiry has been received. We&apos;ll review the details and
-            get back to you as soon as possible.
-          </p>
+          <div>
+            <label htmlFor="company" className="mb-2 block text-sm font-bold text-[#24232B]">
+              Company
+            </label>
+            <input
+              id="company"
+              name="company"
+              type="text"
+              placeholder="Company name"
+              className="w-full rounded-xl border-[1.5px] border-[#24232B]/20 bg-[#FFFDF7] px-4 py-3.5 text-sm text-[#24232B] outline-none transition-colors placeholder:text-[#6B6A72]/60 focus:border-[#4E7BFF]"
+            />
+          </div>
 
-          <button
-            type="button"
-            onClick={() => {
-              setForm(initialForm);
-              setSubmitted(false);
-            }}
-            className="mt-8 inline-flex items-center justify-center rounded-xl border border-[#1E334A] bg-white/[0.03] px-6 py-3 text-sm font-semibold text-slate-300 transition-colors hover:border-teal-400/30 hover:bg-teal-500/5 hover:text-teal-400"
-          >
-            Send another enquiry
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <form
-      onSubmit={handleSubmit}
-      className="rounded-3xl border border-[#1E334A] bg-[#07111F] p-6 sm:p-8 lg:p-10"
-    >
-      <div className="mb-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-slate-100">
-          Send us a message
-        </h2>
-
-        <p className="mt-2 text-sm leading-6 text-slate-500">
-          Share a few details about what you&apos;re looking for.
-        </p>
-      </div>
-
-      <div className="grid gap-6 sm:grid-cols-2">
-        <div>
-          <label
-            htmlFor="name"
-            className="mb-2 block text-sm font-medium text-slate-300"
-          >
-            Name <span className="text-teal-400">*</span>
-          </label>
-
-          <input
-            id="name"
-            name="name"
-            type="text"
-            value={form.name}
-            onChange={handleChange}
-            required
-            autoComplete="name"
-            placeholder="Your name"
-            className="w-full rounded-xl border border-[#1E334A] bg-[#0B1728] px-4 py-3.5 text-sm text-slate-100 outline-none transition-colors placeholder:text-slate-600 focus:border-teal-400/50 focus:ring-1 focus:ring-teal-400/20"
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="email"
-            className="mb-2 block text-sm font-medium text-slate-300"
-          >
-            Email <span className="text-teal-400">*</span>
-          </label>
-
-          <input
-            id="email"
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-            required
-            autoComplete="email"
-            placeholder="you@example.com"
-            className="w-full rounded-xl border border-[#1E334A] bg-[#0B1728] px-4 py-3.5 text-sm text-slate-100 outline-none transition-colors placeholder:text-slate-600 focus:border-teal-400/50 focus:ring-1 focus:ring-teal-400/20"
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="company"
-            className="mb-2 block text-sm font-medium text-slate-300"
-          >
-            Company
-          </label>
-
-          <input
-            id="company"
-            name="company"
-            type="text"
-            value={form.company}
-            onChange={handleChange}
-            autoComplete="organization"
-            placeholder="Company name"
-            className="w-full rounded-xl border border-[#1E334A] bg-[#0B1728] px-4 py-3.5 text-sm text-slate-100 outline-none transition-colors placeholder:text-slate-600 focus:border-teal-400/50 focus:ring-1 focus:ring-teal-400/20"
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="service"
-            className="mb-2 block text-sm font-medium text-slate-300"
-          >
-            Area of interest
-          </label>
-
-          <select
-            id="service"
-            name="service"
-            value={form.service}
-            onChange={handleChange}
-            className="w-full appearance-none rounded-xl border border-[#1E334A] bg-[#0B1728] px-4 py-3.5 text-sm text-slate-100 outline-none transition-colors focus:border-teal-400/50 focus:ring-1 focus:ring-teal-400/20"
-          >
-            <option value="" className="bg-[#0B1728]">
-              Select an area
-            </option>
-
-            {services.map((service) => (
-              <option
-                key={service}
-                value={service}
-                className="bg-[#0B1728]"
-              >
-                {service}
+          <div>
+            <label htmlFor="area" className="mb-2 block text-sm font-bold text-[#24232B]">
+              What are you building?
+            </label>
+            <select
+              id="area"
+              name="area"
+              defaultValue=""
+              className="w-full appearance-none rounded-xl border-[1.5px] border-[#24232B]/20 bg-[#FFFDF7] px-4 py-3.5 text-sm text-[#24232B] outline-none transition-colors focus:border-[#4E7BFF]"
+            >
+              <option value="" disabled>
+                Select an area
               </option>
-            ))}
-          </select>
+              <option value="ai">AI & Intelligent Systems</option>
+              <option value="cloud">Cloud & DevOps</option>
+              <option value="software">Software Engineering</option>
+              <option value="data">Data & Digital Intelligence</option>
+              <option value="not-sure">Not sure yet</option>
+            </select>
+          </div>
         </div>
-      </div>
 
-      <div className="mt-6">
-        <label
-          htmlFor="message"
-          className="mb-2 block text-sm font-medium text-slate-300"
-        >
-          Message <span className="text-teal-400">*</span>
-        </label>
-
-        <textarea
-          id="message"
-          name="message"
-          value={form.message}
-          onChange={handleChange}
-          required
-          rows={7}
-          placeholder="Tell us about your project, challenge, or idea..."
-          className="w-full resize-none rounded-xl border border-[#1E334A] bg-[#0B1728] px-4 py-3.5 text-sm leading-7 text-slate-100 outline-none transition-colors placeholder:text-slate-600 focus:border-teal-400/50 focus:ring-1 focus:ring-teal-400/20"
-        />
-      </div>
-
-      <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-sm text-xs leading-5 text-slate-600">
-          By submitting this form, you are asking Veda Solutions Hub to
-          respond to your enquiry.
-        </p>
+        <div>
+          <label htmlFor="message" className="mb-2 block text-sm font-bold text-[#24232B]">
+            Message <span className="text-[#FF3B30]">*</span>
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            required
+            rows={6}
+            placeholder="Tell us about your project, challenge, or idea..."
+            className="w-full resize-none rounded-xl border-[1.5px] border-[#24232B]/20 bg-[#FFFDF7] px-4 py-3.5 text-sm text-[#24232B] outline-none transition-colors placeholder:text-[#6B6A72]/60 focus:border-[#4E7BFF]"
+          />
+        </div>
 
         <button
           type="submit"
-          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-teal-500 px-7 py-3.5 text-sm font-semibold text-[#07111F] transition-all duration-200 hover:bg-teal-400 hover:shadow-lg hover:shadow-teal-500/20"
+          className="tile-hover inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#24232B] px-6 py-3.5 text-sm font-bold text-white"
         >
-          Send enquiry
-          <ArrowRight className="h-4 w-4" />
+          Start the conversation
+          <ArrowRight className="arrow-shift h-4 w-4" />
         </button>
-      </div>
-    </form>
+
+        {submitted && (
+          <div className="rounded-xl border-[1.5px] border-[#24232B] bg-[#8CE8B8] px-5 py-4">
+            <p className="text-sm font-bold text-[#24232B]">Message sent.</p>
+            <p className="mt-1 text-sm leading-6 text-[#24232B]/70">
+              Thanks for reaching out — we&apos;ll be in touch soon.
+            </p>
+          </div>
+        )}
+
+        <p className="text-center text-xs text-[#6B6A72]">
+          By submitting this form, you&apos;re asking Veda Solutions Hub to respond to your enquiry.
+        </p>
+      </form>
+    </div>
   );
 }

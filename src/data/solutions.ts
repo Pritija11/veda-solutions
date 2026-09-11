@@ -1,50 +1,48 @@
+import { Sparkles, Cloud, Code2, Database } from "lucide-react";
+
 export const solutions = [
   {
-    slug: "ai-solutions",
-    title: "AI Solutions",
+    slug: "ai",
+    number: "01",
+    tag: "AI",
+    icon: Sparkles,
+    title: "AI & Intelligent Systems",
     shortDescription:
-      "Building practical AI-powered solutions that improve products, workflows, decision-making, and digital experiences.",
-    href: "/solutions/ai-solutions",
-    primary: true,
+      "Intelligent workflows, automation, generative AI and AI-powered applications built into real products.",
+    href: "/solutions/ai",
+    pastel: "powder-blue",
   },
   {
-    slug: "cloud-devops",
+    slug: "cloud",
+    number: "02",
+    tag: "CLOUD",
+    icon: Cloud,
     title: "Cloud & DevOps",
     shortDescription:
-      "Designing modern cloud infrastructure and automated delivery systems for scalable, reliable, and secure applications.",
-    href: "/solutions/cloud-devops",
-    primary: true,
+      "Cloud infrastructure, deployment, scalability and reliable digital operations.",
+    href: "/solutions/cloud",
+    pastel: "soft-mint",
   },
   {
-    slug: "software-solutions",
-    title: "Software Solutions",
+    slug: "software",
+    number: "03",
+    tag: "SOFTWARE",
+    icon: Code2,
+    title: "Software Engineering",
     shortDescription:
-      "Developing scalable web applications, APIs, platforms, and software systems around real business requirements.",
-    href: "/solutions/software-solutions",
-    primary: false,
+      "Web applications, APIs, platforms and custom digital products.",
+    href: "/solutions/software",
+    pastel: "butter-yellow",
   },
   {
-    slug: "data-solutions",
-    title: "Data Solutions",
+    slug: "data",
+    number: "04",
+    tag: "DATA",
+    icon: Database,
+    title: "Data & Digital Intelligence",
     shortDescription:
-      "Turning data into useful insights through data engineering, analytics, pipelines, and intelligent systems.",
-    href: "/solutions/data-solutions",
-    primary: false,
+      "Data systems, analytics and information-driven decision making.",
+    href: "/solutions/data",
+    pastel: "soft-apricot",
   },
-  {
-    slug: "cybersecurity",
-    title: "Cybersecurity",
-    shortDescription:
-      "Strengthening digital environments through practical security strategies, infrastructure protection, and risk-aware engineering.",
-    href: "/solutions/cybersecurity",
-    primary: false,
-  },
-  {
-    slug: "digital-consulting",
-    title: "Digital Consulting",
-    shortDescription:
-      "Helping organizations make better technology decisions through strategy, assessment, architecture, and digital transformation.",
-    href: "/solutions/digital-consulting",
-    primary: false,
-  },
-];
+] as const;

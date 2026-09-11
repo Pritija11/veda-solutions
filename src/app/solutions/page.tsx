@@ -1,149 +1,135 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
-import SectionHeading from "@/components/ui/SectionHeading";
-import SolutionCard from "@/components/ui/SolutionCard";
-import Button from "@/components/ui/Button";
+import Reveal from "@/components/ui/Reveal";
 import { solutions } from "@/data/solutions";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata(
   "Solutions",
-  "Explore Veda Solutions Hub technology solutions across AI, cloud, DevOps, software, data, cybersecurity, and digital consulting.",
+  "Veda Solutions Hub is a technology startup building intelligent digital systems across AI, software, cloud and data.",
   "/solutions",
 );
+
+const steps = [
+  { n: "01", label: "Discover", d: "We understand the problem, the users, and the constraints behind it." },
+  { n: "02", label: "Design", d: "We shape the right combination of AI, software, cloud and data." },
+  { n: "03", label: "Build", d: "We engineer it into a system that stays reliable in production." },
+];
 
 export default function SolutionsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-[#07111F] pb-20 pt-36 sm:pb-24 sm:pt-40">
-        <div className="pointer-events-none absolute right-0 top-20 h-96 w-96 rounded-full bg-teal-500/5 blur-3xl" />
+      <section className="relative overflow-hidden bg-[#FFFDF7] pb-20 pt-[150px] sm:pt-[168px]">
+        <div className="dot-grid pointer-events-none absolute -right-6 -top-6 h-72 w-72" aria-hidden />
 
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-4xl">
-            <p className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-teal-400">
-              Our solutions
-            </p>
-
-            <h1 className="font-[family-name:var(--font-dm-serif)] text-5xl leading-[1.08] tracking-tight text-slate-100 sm:text-6xl lg:text-7xl">
-              Technology capabilities,
-              <span className="text-teal-400"> connected.</span>
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal className="max-w-3xl">
+            <div className="tech-label text-[#6B6A72]">Solutions</div>
+            <h1 className="mt-6 font-[family-name:var(--font-sora)] text-5xl font-extrabold leading-[1.05] text-[#24232B] sm:text-6xl">
+              Technology built around the problem.
             </h1>
-
-            <p className="mt-7 max-w-3xl text-base leading-8 text-slate-400 sm:text-lg">
-              We combine AI, cloud, software, data, security, and digital
-              strategy to create solutions around the challenges that matter
-              to your organization.
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-[#6B6A72]">
+              As a technology startup, Veda Solutions Hub brings AI, software, cloud and data together as one
+              connected system — not a sprawling menu of unrelated IT services.
             </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Solution tiles */}
+      <section className="bg-white py-20 sm:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid gap-5 sm:grid-cols-2">
+            {solutions.map((solution, i) => {
+              const Icon = solution.icon;
+              return (
+                <Reveal key={solution.slug} delay={i * 90}>
+                  <Link
+                    href={solution.href}
+                    className="veda-tile tile-hover group flex h-full flex-col justify-between p-8"
+                    style={{ backgroundColor: `var(--${solution.pastel})` }}
+                  >
+                    <div className="flex items-start justify-between">
+                      <span className="flex h-12 w-12 items-center justify-center rounded-xl border-[1.5px] border-[#24232B] bg-white">
+                        <Icon className="h-5 w-5 text-[#24232B]" />
+                      </span>
+                      <span className="tech-label text-[#24232B]/60">
+                        {solution.tag} / {solution.number}
+                      </span>
+                    </div>
+
+                    <div>
+                      <h2 className="mt-9 font-[family-name:var(--font-sora)] text-2xl font-extrabold text-[#24232B]">
+                        {solution.title}
+                      </h2>
+                      <p className="mt-3 max-w-md text-sm leading-6 text-[#24232B]/70">{solution.shortDescription}</p>
+                      <span className="arrow-shift mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#24232B]">
+                        Explore solution
+                        <ArrowUpRight className="h-4 w-4" />
+                      </span>
+                    </div>
+                  </Link>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Solutions */}
-      <section className="bg-[#0B1728] py-24 sm:py-28">
+      {/* Approach */}
+      <section className="bg-[#24232B] py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Explore our capabilities"
-            title="From intelligent systems to digital infrastructure."
-            description="Choose a focused capability or combine multiple disciplines to build a solution around your specific requirements."
-          />
+          <Reveal>
+            <div className="max-w-xl">
+              <div className="tech-label text-white/50">Our approach</div>
+              <h2 className="mt-5 font-[family-name:var(--font-sora)] text-3xl font-extrabold leading-[1.1] text-white sm:text-4xl">
+                Start with the problem. Choose the technology around it.
+              </h2>
+            </div>
+          </Reveal>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {solutions.map((solution, index) => (
-              <SolutionCard
-                key={solution.slug}
-                number={String(index + 1).padStart(2, "0")}
-                title={solution.title}
-                description={solution.shortDescription}
-                href={solution.href}
-                featured={solution.primary}
-              />
+          <div className="mt-12 grid gap-5 sm:grid-cols-3">
+            {steps.map((step, i) => (
+              <Reveal key={step.n} delay={i * 100}>
+                <div className="veda-tile-soft h-full border-white/15 bg-white/5 p-6">
+                  <span className="tech-label text-[#FF7043]">{step.n}</span>
+                  <h3 className="mt-5 font-[family-name:var(--font-sora)] text-lg font-extrabold text-white">
+                    {step.label}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-white/60">{step.d}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* How we work */}
-      <section className="bg-[#07111F] py-24 sm:py-28">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr]">
-            <SectionHeading
-              eyebrow="How we approach solutions"
-              title="Start with the problem. Choose the technology around it."
-            />
-
-            <div className="grid gap-5 sm:grid-cols-3">
-              <div className="rounded-2xl border border-[#1E334A] bg-[#0B1728] p-6">
-                <span className="text-sm font-semibold text-teal-400">
-                  01
-                </span>
-
-                <h2 className="mt-5 text-lg font-semibold text-slate-100">
-                  Understand
-                </h2>
-
-                <p className="mt-3 text-sm leading-7 text-slate-400">
-                  We first understand the goals, constraints, users, and
-                  problems behind the requirement.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-[#1E334A] bg-[#0B1728] p-6">
-                <span className="text-sm font-semibold text-teal-400">
-                  02
-                </span>
-
-                <h2 className="mt-5 text-lg font-semibold text-slate-100">
-                  Design
-                </h2>
-
-                <p className="mt-3 text-sm leading-7 text-slate-400">
-                  We identify the right combination of technologies,
-                  architecture, and engineering practices.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-[#1E334A] bg-[#0B1728] p-6">
-                <span className="text-sm font-semibold text-teal-400">
-                  03
-                </span>
-
-                <h2 className="mt-5 text-lg font-semibold text-slate-100">
-                  Build
-                </h2>
-
-                <p className="mt-3 text-sm leading-7 text-slate-400">
-                  We turn the solution into a maintainable digital system that
-                  can evolve with changing needs.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
-      <section className="bg-[#0B1728] py-20">
+      <section className="bg-[#FFFDF7] py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="rounded-2xl border border-teal-400/20 bg-[#0F1F32] p-8 sm:p-10 lg:flex lg:items-center lg:justify-between lg:p-12">
-            <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-teal-400">
-                Have a challenge?
-              </p>
-
-              <h2 className="mt-3 font-[family-name:var(--font-dm-serif)] text-3xl leading-tight text-slate-100 sm:text-4xl">
-                Let&apos;s find the right technology for it.
-              </h2>
-
-              <p className="mt-4 text-sm leading-7 text-slate-400">
-                Tell us what you are trying to build, improve, or solve.
-              </p>
+          <Reveal>
+            <div className="veda-tile flex flex-col gap-8 bg-[#FFDD57] p-8 sm:flex-row sm:items-center sm:justify-between sm:p-12">
+              <div className="max-w-2xl">
+                <div className="tech-label text-[#24232B]/60">Have a challenge?</div>
+                <h2 className="mt-3 font-[family-name:var(--font-sora)] text-3xl font-extrabold leading-tight text-[#24232B] sm:text-4xl">
+                  Let&apos;s find the right technology for it.
+                </h2>
+                <p className="mt-4 text-sm leading-6 text-[#24232B]/70">
+                  Tell us what you are trying to build, improve, or solve.
+                </p>
+              </div>
+              <Link
+                href="/contact"
+                className="tile-hover inline-flex shrink-0 items-center gap-2 rounded-xl bg-[#24232B] px-7 py-3.5 text-sm font-bold text-white"
+              >
+                Start a conversation
+                <span className="arrow-shift">→</span>
+              </Link>
             </div>
-
-            <div className="mt-7 lg:mt-0">
-              <Button href="/contact">Start a conversation →</Button>
-            </div>
-          </div>
+          </Reveal>
         </div>
       </section>
     </>

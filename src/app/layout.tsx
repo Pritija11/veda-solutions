@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, DM_Serif_Display } from "next/font/google";
+import { Sora, Inter, Space_Mono } from "next/font/google";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -7,15 +7,21 @@ import OrganizationSchema from "@/components/seo/OrganizationSchema";
 
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const sora = Sora({
+  variable: "--font-sora",
   subsets: ["latin"],
   display: "swap",
 });
 
-const dmSerif = DM_Serif_Display({
-  variable: "--font-dm-serif",
-  weight: "400",
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
+  weight: ["400", "700"],
   subsets: ["latin"],
   display: "swap",
 });
@@ -24,38 +30,35 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://vedasolutionshub.com"),
 
   title: {
-    default: "Veda Solutions Hub | Technology Startup",
+    default: "Veda Solutions Hub | Technology Startup Building Digital Systems",
     template: "%s | Veda Solutions Hub",
   },
 
   description:
-    "Veda Solutions Hub is a technology startup building AI-powered and modern digital solutions across AI, cloud, DevOps, software, data, and automation.",
+    "Veda Solutions Hub is a technology startup building intelligent digital systems across AI, software, cloud and data.",
 
   alternates: {
-  canonical: "/",
-},  
+    canonical: "/",
+  },
 
   keywords: [
     "Veda Solutions Hub",
-    "Veda Solutions Hub startup",
-    "technology startup",
-    "AI technology startup",
-    "AI solutions",
-    "cloud solutions",
-    "DevOps",
-    "digital solutions",
-    "software solutions",
-    "data solutions",
-    "technology solutions",
+    "Veda Solutions Hub technology startup",
+    "digital systems startup",
+    "AI software cloud data",
+    "intelligent digital systems",
+    "software engineering",
+    "cloud and DevOps",
+    "data and digital intelligence",
   ],
 
   authors: [{ name: "Veda Solutions Hub" }],
   creator: "Veda Solutions Hub",
 
   openGraph: {
-    title: "Veda Solutions Hub | Technology Startup",
+    title: "Veda Solutions Hub | Technology Startup Building Digital Systems",
     description:
-      "Veda Solutions Hub is a technology startup building AI-powered and modern digital solutions across AI, cloud, DevOps, software, data, and automation.",
+      "Veda Solutions Hub is a technology startup building intelligent digital systems across AI, software, cloud and data.",
     type: "website",
     siteName: "Veda Solutions Hub",
   },
@@ -74,7 +77,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${manrope.variable} ${dmSerif.variable} antialiased`}
+        className={`${sora.variable} ${inter.variable} ${spaceMono.variable} antialiased`}
       >
         <OrganizationSchema />
         <Navbar />

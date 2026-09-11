@@ -1,127 +1,110 @@
 import Link from "next/link";
-import { ArrowRight, Brain, Cloud, Database, Code2, ShieldCheck } from "lucide-react";
+import Reveal from "@/components/ui/Reveal";
+
+const tiles = [
+  { id: "ai", label: "AI", n: "01", bg: "#8FD4F2", top: "0%", left: "2%", rotate: "-3deg", delay: 120 },
+  { id: "cloud", label: "CLOUD", n: "02", bg: "#8CE8B8", top: "4%", left: "58%", rotate: "2deg", delay: 220 },
+  { id: "software", label: "SOFTWARE", n: "03", bg: "#FFDD57", top: "56%", left: "0%", rotate: "2deg", delay: 320 },
+  { id: "data", label: "DATA", n: "04", bg: "#FFAE72", top: "60%", left: "56%", rotate: "-2deg", delay: 420 },
+];
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#07111F] pt-32">
-      {/* Background details */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-1/3 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-teal-500/5 blur-3xl" />
+    <section className="relative overflow-hidden bg-[#FFFDF7] pb-24 pt-[150px] sm:pt-[168px]">
+      <div className="dot-grid pointer-events-none absolute -right-6 -top-6 h-72 w-72" aria-hidden />
 
-        <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(rgba(255,255,255,1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,1)_1px,transparent_1px)] [background-size:64px_64px]" />
-      </div>
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
+          {/* Copy */}
+          <div className="max-w-2xl">
+            <Reveal variant="assemble-left">
+              <div className="tech-label text-[#6B6A72]">
+                <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-[#FF7043]" />
+                Veda Solutions Hub / Technology Startup
+              </div>
+            </Reveal>
 
-      <div className="relative mx-auto grid min-h-[calc(100vh-8rem)] max-w-7xl items-center gap-16 px-6 pb-20 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
-        {/* Content */}
-        <div className="max-w-2xl">
-          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-teal-400/20 bg-teal-500/5 px-4 py-2">
-            <span className="h-2 w-2 rounded-full bg-teal-400 shadow-lg shadow-teal-400/50" />
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-400">
-              Technology Startup
-            </span>
+            <Reveal variant="assemble-left" delay={80}>
+              <h1 className="mt-6 font-[family-name:var(--font-sora)] text-6xl font-extrabold leading-[1.02] text-[#24232B] sm:text-7xl">
+                Technology, made for what&apos;s next.
+              </h1>
+            </Reveal>
+
+            <Reveal variant="assemble-left" delay={160}>
+              <p className="mt-7 max-w-xl text-lg leading-8 text-[#6B6A72]">
+                Veda Solutions Hub builds intelligent digital systems across AI, software, cloud and data — helping
+                businesses build, operate and evolve.
+              </p>
+            </Reveal>
+
+            <Reveal variant="assemble-left" delay={240}>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <Link
+                  href="/solutions"
+                  className="tile-hover inline-flex items-center gap-2 rounded-xl bg-[#24232B] px-7 py-3.5 text-sm font-bold text-white"
+                >
+                  Explore solutions
+                  <span className="arrow-shift">→</span>
+                </Link>
+                <Link
+                  href="/contact"
+                  className="tile-hover inline-flex items-center gap-2 rounded-xl border-[1.5px] border-[#24232B] bg-white px-7 py-3.5 text-sm font-bold text-[#24232B]"
+                >
+                  Talk to Veda
+                </Link>
+              </div>
+            </Reveal>
           </div>
 
-          <h1 className="font-[family-name:var(--font-dm-serif)] text-5xl leading-[1.08] tracking-tight text-slate-100 sm:text-6xl lg:text-7xl">
-            Building smarter
-            <span className="block text-teal-400">
-              solutions
-            </span>
-            for a digital world.
-          </h1>
+          {/* Modular tile composition */}
+          <div className="relative mx-auto h-[420px] w-full max-w-[440px] sm:h-[460px]">
+            {/* Connector lines */}
+            <Reveal variant="assemble" delay={500} className="pointer-events-none absolute inset-0 h-full w-full">
+              <svg viewBox="0 0 440 460" className="h-full w-full overflow-visible">
+                <line x1="220" y1="230" x2="95" y2="90" stroke="#24232B" strokeOpacity="0.3" strokeWidth="1.5" className="line-draw" />
+                <line x1="220" y1="230" x2="345" y2="110" stroke="#24232B" strokeOpacity="0.3" strokeWidth="1.5" className="line-draw" />
+                <line x1="220" y1="230" x2="95" y2="345" stroke="#24232B" strokeOpacity="0.3" strokeWidth="1.5" className="line-draw" />
+                <line x1="220" y1="230" x2="345" y2="365" stroke="#24232B" strokeOpacity="0.3" strokeWidth="1.5" className="line-draw" />
+              </svg>
+            </Reveal>
 
-          <p className="mt-7 max-w-xl text-base leading-8 text-slate-400 sm:text-lg">
-            Veda Solutions Hub is a technology startup combining AI, cloud,
-            software, data, and automation to build practical digital
-            solutions for a changing world.
-          </p>
+            {tiles.map((t) => (
+              <Reveal
+                key={t.id}
+                variant="assemble-rotate"
+                delay={t.delay}
+                className="veda-tile tile-hover absolute flex h-[132px] w-[150px] flex-col justify-between p-4"
+                style={{ top: t.top, left: t.left, backgroundColor: t.bg, ["--tile-rotate" as string]: t.rotate }}
+              >
+                <div className="flex items-start justify-between">
+                  <span className="tech-label text-[#24232B]/70">{t.n}</span>
+                  <span className="arrow-shift text-sm">↗</span>
+                </div>
+                <p className="font-[family-name:var(--font-sora)] text-xl font-extrabold text-[#24232B]">{t.label}</p>
+              </Reveal>
+            ))}
 
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-            <Link
-              href="/solutions"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-teal-500 px-6 py-3.5 text-sm font-semibold text-[#07111F] transition-all duration-200 hover:bg-teal-400 hover:shadow-lg hover:shadow-teal-500/20"
+            {/* Central hub tile */}
+            <Reveal
+              variant="assemble"
+              delay={560}
+              className="veda-tile tile-hover absolute flex h-[112px] w-[112px] flex-col items-center justify-center gap-1 bg-[#24232B]"
+              style={{ top: "38%", left: "38%" }}
             >
-              Explore solutions
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+              <span className="tech-label text-white/60">System</span>
+              <span className="font-[family-name:var(--font-sora)] text-2xl font-extrabold text-white">01</span>
+            </Reveal>
 
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#1E334A] bg-white/[0.03] px-6 py-3.5 text-sm font-semibold text-slate-200 transition-all duration-200 hover:border-teal-400/40 hover:bg-teal-500/5 hover:text-teal-400"
+            {/* Small orange badge */}
+            <Reveal
+              variant="assemble"
+              delay={680}
+              className="chip absolute bg-[#FF7043] text-white"
+              style={{ top: "-4px", right: "6%" }}
             >
-              Talk to us
-            </Link>
+              System / 01
+            </Reveal>
           </div>
-
-          {/* Trust points */}
-          <div className="mt-12 flex flex-wrap gap-x-7 gap-y-3 border-t border-white/10 pt-7">
-            <div className="flex items-center gap-2 text-sm text-slate-500">
-              <span className="h-1.5 w-1.5 rounded-full bg-teal-400" />
-              AI-powered solutions
-            </div>
-
-            <div className="flex items-center gap-2 text-sm text-slate-500">
-              <span className="h-1.5 w-1.5 rounded-full bg-indigo-400" />
-              Cloud & DevOps
-            </div>
-
-            <div className="flex items-center gap-2 text-sm text-slate-500">
-              <span className="h-1.5 w-1.5 rounded-full bg-teal-400" />
-              Digital engineering
-            </div>
-          </div>
-        </div>
-
-        {/* Hub Visual */}
-        <div className="relative mx-auto flex h-[480px] w-full max-w-[520px] items-center justify-center">
-          {/* Outer rings */}
-          <div className="absolute h-[380px] w-[380px] rounded-full border border-teal-400/10" />
-          <div className="absolute h-[290px] w-[290px] rounded-full border border-indigo-400/10" />
-          <div className="absolute h-[200px] w-[200px] rounded-full border border-teal-400/10" />
-
-          {/* Connection lines */}
-          <div className="absolute h-px w-[340px] rotate-[25deg] bg-gradient-to-r from-transparent via-teal-400/30 to-transparent" />
-          <div className="absolute h-px w-[340px] -rotate-[25deg] bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent" />
-          <div className="absolute h-[300px] w-px rotate-[35deg] bg-gradient-to-b from-transparent via-teal-400/20 to-transparent" />
-          <div className="absolute h-[300px] w-px -rotate-[35deg] bg-gradient-to-b from-transparent via-indigo-400/20 to-transparent" />
-
-          {/* Central hub */}
-          <div className="relative z-10 flex h-32 w-32 items-center justify-center rounded-full border border-teal-400/40 bg-[#0F1F32] shadow-2xl shadow-teal-500/10">
-            <div className="absolute inset-3 rounded-full border border-teal-400/20" />
-
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-500/10">
-              <div className="h-5 w-5 rounded-full bg-teal-400 shadow-lg shadow-teal-400/50" />
-            </div>
-          </div>
-
-          {/* AI */}
-          <div className="absolute left-2 top-20 flex h-16 w-16 items-center justify-center rounded-2xl border border-teal-400/20 bg-[#0F1F32] shadow-xl">
-            <Brain className="h-7 w-7 text-teal-400" />
-          </div>
-
-          {/* Cloud */}
-          <div className="absolute right-4 top-16 flex h-16 w-16 items-center justify-center rounded-2xl border border-indigo-400/20 bg-[#0F1F32] shadow-xl">
-            <Cloud className="h-7 w-7 text-indigo-400" />
-          </div>
-
-          {/* Data */}
-          <div className="absolute bottom-16 left-8 flex h-16 w-16 items-center justify-center rounded-2xl border border-indigo-400/20 bg-[#0F1F32] shadow-xl">
-            <Database className="h-7 w-7 text-indigo-400" />
-          </div>
-
-          {/* Software */}
-          <div className="absolute bottom-12 right-10 flex h-16 w-16 items-center justify-center rounded-2xl border border-teal-400/20 bg-[#0F1F32] shadow-xl">
-            <Code2 className="h-7 w-7 text-teal-400" />
-          </div>
-
-          {/* Security */}
-          <div className="absolute bottom-1/2 right-[-10px] flex h-14 w-14 translate-y-1/2 items-center justify-center rounded-2xl border border-indigo-400/20 bg-[#0F1F32] shadow-xl">
-            <ShieldCheck className="h-6 w-6 text-indigo-400" />
-          </div>
-
-          {/* Floating dots */}
-          <span className="absolute left-1/4 top-6 h-2 w-2 rounded-full bg-teal-400/60" />
-          <span className="absolute right-1/4 bottom-5 h-2 w-2 rounded-full bg-indigo-400/60" />
-          <span className="absolute bottom-1/3 left-0 h-1.5 w-1.5 rounded-full bg-teal-400/40" />
         </div>
       </div>
     </section>

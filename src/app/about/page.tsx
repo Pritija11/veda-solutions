@@ -1,224 +1,216 @@
 import type { Metadata } from "next";
-import {
-  BrainCircuit,
-  Cloud,
-  Code2,
-  Database,
-  ShieldCheck,
-  Sparkles,
-} from "lucide-react";
+import Link from "next/link";
 
-import SectionHeading from "@/components/ui/SectionHeading";
-import Button from "@/components/ui/Button";
 import { createPageMetadata } from "@/lib/seo";
+import Reveal from "@/components/ui/Reveal";
 
 export const metadata: Metadata = createPageMetadata(
   "About",
-  "Learn about Veda Solutions Hub, a technology startup building AI-powered and modern digital solutions across AI, cloud, software, data, and cybersecurity.",
+  "Veda Solutions Hub is a technology startup building intelligent digital systems across AI, software, cloud and data.",
   "/about",
 );
 
-const capabilities = [
-  {
-    icon: BrainCircuit,
-    title: "Artificial Intelligence",
-    description:
-      "We explore practical ways to use AI to create smarter products, workflows, and digital experiences.",
-  },
-  {
-    icon: Cloud,
-    title: "Cloud & DevOps",
-    description:
-      "We build modern infrastructure and delivery practices that help digital systems remain scalable and reliable.",
-  },
-  {
-    icon: Code2,
-    title: "Software",
-    description:
-      "We engineer modern applications and platforms designed around real requirements and long-term maintainability.",
-  },
-  {
-    icon: Database,
-    title: "Data",
-    description:
-      "We create stronger data foundations that support analytics, intelligent systems, and better decision-making.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Security",
-    description:
-      "We consider security and resilience as important parts of building dependable digital environments.",
-  },
-  {
-    icon: Sparkles,
-    title: "Digital Strategy",
-    description:
-      "We help turn technology opportunities into practical digital directions and solutions.",
-  },
+const beliefs = [
+  { n: "01", t: "Useful over unnecessary", d: "Technology should solve a real problem, not add complexity for its own sake.", bg: "var(--powder-blue)" },
+  { n: "02", t: "Systems over silos", d: "AI, software, cloud and data work better as one connected system.", bg: "var(--soft-mint)" },
+  { n: "03", t: "Built to evolve", d: "Every system we build is designed to grow with the business behind it.", bg: "var(--butter-yellow)" },
 ];
+
+const building = ["AI", "SOFTWARE", "CLOUD", "DATA"];
 
 export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-[#07111F] pb-20 pt-36 sm:pb-24 sm:pt-40">
-        <div className="pointer-events-none absolute right-0 top-20 h-96 w-96 rounded-full bg-teal-500/5 blur-3xl" />
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-4xl">
-            <p className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-teal-400">
-              About Veda Solutions Hub
-            </p>
-
-            <h1 className="font-[family-name:var(--font-dm-serif)] text-5xl leading-[1.08] tracking-tight text-slate-100 sm:text-6xl lg:text-7xl">
-              A technology startup built around
-              <span className="text-teal-400"> connected ideas.</span>
+      <section className="relative overflow-hidden bg-[#FFFDF7] pb-20 pt-[150px] sm:pt-[168px]">
+        <div className="dot-grid pointer-events-none absolute -right-6 -top-6 h-72 w-72" aria-hidden />
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal className="max-w-3xl">
+            <div className="tech-label text-[#6B6A72]">About Veda</div>
+            <h1 className="mt-6 font-[family-name:var(--font-sora)] text-5xl font-extrabold leading-[1.05] text-[#24232B] sm:text-6xl">
+              We believe technology should make ambitious businesses more capable.
             </h1>
-
-            <p className="mt-7 max-w-3xl text-base leading-8 text-slate-400 sm:text-lg">
-              Veda Solutions Hub brings together AI, cloud, software, data,
-              cybersecurity, and digital strategy to create practical
-              solutions for a rapidly changing digital world.
-            </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Story */}
-      <section className="bg-[#0B1728] py-24 sm:py-28">
+      {/* Our Story */}
+      <section className="bg-white py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr]">
-            <SectionHeading
-              eyebrow="Our approach"
-              title="Technology works best when everything connects."
-            />
-
-            <div className="space-y-6 text-base leading-8 text-slate-400">
-              <p>
-                Veda Solutions Hub is a technology startup focused on building
-                modern digital solutions that combine different areas of
-                technology rather than treating them as isolated disciplines.
-              </p>
-
-              <p>
-                AI can make software more intelligent. Cloud infrastructure
-                can make systems more scalable. Data can make decisions more
-                informed. Software engineering can bring those capabilities
-                together into products people can actually use.
-              </p>
-
-              <p>
-                Our goal is to approach technology from that connected
-                perspective and turn complex possibilities into solutions that
-                are useful, maintainable, and ready to evolve.
-              </p>
-
-              <div className="pt-4">
-                <Button href="/solutions">
-                  Explore our solutions →
-                </Button>
+          <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr]">
+            <Reveal>
+              <div className="tech-label text-[#6B6A72]">Our Story</div>
+              <h2 className="mt-5 font-[family-name:var(--font-sora)] text-3xl font-extrabold leading-[1.1] text-[#24232B]">
+                Technology works best when it&apos;s connected.
+              </h2>
+            </Reveal>
+            <Reveal delay={100}>
+              <div className="space-y-5 text-base leading-8 text-[#6B6A72]">
+                <p>
+                  Veda Solutions Hub is a technology startup focused on building intelligent digital systems that
+                  combine different areas of technology rather than treating them as isolated disciplines.
+                </p>
+                <p>
+                  AI can make software more intelligent. Cloud infrastructure can make systems more scalable. Data
+                  can make decisions more informed. Software engineering brings those capabilities together into
+                  products people can actually use.
+                </p>
+                <p>
+                  Cybersecurity and digital consulting sit underneath this work as supporting disciplines — not
+                  separate products, but the practices that keep every system we build sound.
+                </p>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Capabilities */}
-      <section className="bg-[#07111F] py-24 sm:py-28">
+      {/* What We Believe */}
+      <section className="bg-[#FFF4DD] py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="What we work with"
-            title="Capabilities across the modern digital stack."
-            description="Our technology capabilities span the areas needed to design, build, secure, and evolve modern digital systems."
-          />
+          <Reveal>
+            <div className="tech-label text-[#6B6A72]">What We Believe</div>
+            <h2 className="mt-5 max-w-xl font-[family-name:var(--font-sora)] text-3xl font-extrabold leading-[1.1] text-[#24232B] sm:text-4xl">
+              Useful technology over unnecessary complexity.
+            </h2>
+          </Reveal>
 
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {capabilities.map((capability, index) => {
-              const Icon = capability.icon;
-
-              return (
-                <article
-                  key={capability.title}
-                  className="rounded-2xl border border-[#1E334A] bg-[#0B1728] p-7 transition-colors duration-300 hover:border-teal-400/30 hover:bg-[#0F1F32]"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-teal-400/20 bg-teal-500/10">
-                      <Icon className="h-5 w-5 text-teal-400" />
-                    </div>
-
-                    <span className="text-xs font-semibold tracking-widest text-slate-600">
-                      0{index + 1}
-                    </span>
-                  </div>
-
-                  <h2 className="mt-7 text-lg font-semibold text-slate-100">
-                    {capability.title}
-                  </h2>
-
-                  <p className="mt-3 text-sm leading-7 text-slate-400">
-                    {capability.description}
-                  </p>
-                </article>
-              );
-            })}
+          <div className="mt-12 grid gap-5 sm:grid-cols-3">
+            {beliefs.map((b, i) => (
+              <Reveal key={b.n} delay={i * 100}>
+                <div className="veda-tile tile-hover h-full p-6" style={{ backgroundColor: b.bg }}>
+                  <span className="tech-label text-[#24232B]/60">{b.n}</span>
+                  <h3 className="mt-5 font-[family-name:var(--font-sora)] text-lg font-extrabold text-[#24232B]">{b.t}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[#24232B]/70">{b.d}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Vision / Mission */}
-      <section className="bg-[#0B1728] py-24 sm:py-28">
+      {/* Our Approach */}
+      <section className="bg-white py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-5 md:grid-cols-2">
-            <article className="rounded-2xl border border-teal-400/20 bg-[#0F1F32] p-8 lg:p-10">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-teal-400">
-                Our vision
+          <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+            <Reveal>
+              <div className="tech-label text-[#6B6A72]">Our Approach</div>
+              <h2 className="mt-5 font-[family-name:var(--font-sora)] text-3xl font-extrabold leading-[1.1] text-[#24232B]">
+                Engineering + intelligence + infrastructure.
+              </h2>
+            </Reveal>
+            <Reveal delay={100}>
+              <p className="max-w-xl text-base leading-8 text-[#6B6A72]">
+                We approach every project the same way: understand the problem, design the right combination of
+                AI, software, cloud and data, then engineer it into a system that stays reliable once it&apos;s in
+                production — not just a demo that worked once.
               </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
 
-              <h2 className="mt-5 font-[family-name:var(--font-dm-serif)] text-3xl leading-tight text-slate-100 sm:text-4xl">
+      {/* How we got here */}
+      <section className="bg-[#FFF4DD] py-20 sm:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="tech-label text-[#6B6A72]">How we got here</div>
+            <h2 className="mt-5 max-w-xl font-[family-name:var(--font-sora)] text-3xl font-extrabold leading-[1.1] text-[#24232B] sm:text-4xl">
+              Foundation first, then focus, then scale.
+            </h2>
+          </Reveal>
+
+          <div className="mt-10 grid gap-5 sm:grid-cols-3">
+            {[
+              { label: "Foundation", d: "Veda Solutions Hub started with a simple observation: AI, software, cloud and data were being sold as separate products when businesses actually needed them as one system." },
+              { label: "Focus", d: "We chose four pillars and said no to becoming a generic IT agency — depth over an unlimited service list." },
+              { label: "What's next", d: "Every engagement sharpens how we connect these four disciplines into systems that hold up in production." },
+            ].map((stage, i) => (
+              <Reveal key={stage.label} delay={i * 100}>
+                <div className="tile-hover veda-tile-soft h-full bg-white p-6">
+                  <span className="tech-label text-[#4E7BFF]">0{i + 1}</span>
+                  <h3 className="mt-4 font-[family-name:var(--font-sora)] text-lg font-extrabold text-[#24232B]">{stage.label}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[#6B6A72]">{stage.d}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What We're Building */}
+      <section className="relative overflow-hidden bg-[#FFC58F] py-20 sm:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:items-center">
+            <Reveal>
+              <div>
+                <div className="tech-label text-[#24232B]/60">What We&apos;re Building</div>
+                <h2 className="mt-5 font-[family-name:var(--font-sora)] text-3xl font-extrabold leading-[1.1] text-[#24232B] sm:text-4xl">
+                  Veda Solutions Hub, end to end.
+                </h2>
+                <p className="mt-5 max-w-lg text-base leading-7 text-[#24232B]/75">
+                  AI, software, cloud and data systems — built as one connected offering rather than four separate
+                  ones.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={120}>
+              <div className="relative flex h-[220px] items-center justify-center">
+                <span className="pointer-events-none select-none font-[family-name:var(--font-sora)] text-[5.5rem] font-extrabold leading-none text-[#24232B]/10 sm:text-[6.5rem]">
+                  VEDA / 2026
+                </span>
+                <div className="absolute inset-0 grid grid-cols-4 gap-3 p-2">
+                  {building.map((label, i) => (
+                    <Reveal
+                      key={label}
+                      variant="assemble"
+                      delay={200 + i * 90}
+                      className="veda-tile-soft flex items-center justify-center bg-white/80 px-2 py-2 text-center"
+                      style={{ alignSelf: i % 2 === 0 ? "start" : "end" }}
+                    >
+                      <span className="tech-label text-[#24232B]">{label}</span>
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Startup Vision */}
+      <section className="bg-[#24232B] py-20 sm:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="max-w-2xl">
+              <div className="tech-label text-white/50">Startup Vision</div>
+              <h2 className="mt-5 font-[family-name:var(--font-sora)] text-3xl font-extrabold leading-[1.1] text-white sm:text-4xl">
                 Make meaningful technology more accessible and useful.
               </h2>
-
-              <p className="mt-5 text-sm leading-7 text-slate-400">
-                We envision a digital environment where organizations can use
-                emerging technologies thoughtfully to create better products,
-                services, and experiences.
+              <p className="mt-6 text-base leading-8 text-white/70">
+                We envision Veda Solutions Hub growing into a technology company known for connecting AI, software,
+                cloud and data into systems that businesses can actually depend on — not just impressive demos.
               </p>
-            </article>
-
-            <article className="rounded-2xl border border-[#1E334A] bg-[#07111F] p-8 lg:p-10">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-400">
-                Our mission
-              </p>
-
-              <h2 className="mt-5 font-[family-name:var(--font-dm-serif)] text-3xl leading-tight text-slate-100 sm:text-4xl">
-                Turn complex technology into practical digital solutions.
-              </h2>
-
-              <p className="mt-5 text-sm leading-7 text-slate-400">
-                We combine engineering, intelligence, infrastructure, and
-                strategy to help solve real-world digital challenges.
-              </p>
-            </article>
-          </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-[#07111F] py-20">
+      <section className="bg-[#FFFDF7] py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="flex flex-col gap-7 rounded-2xl border border-[#1E334A] bg-[#0B1728] p-8 sm:p-10 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-teal-400">
-                Work with us
-              </p>
-
-              <h2 className="mt-3 font-[family-name:var(--font-dm-serif)] text-3xl text-slate-100 sm:text-4xl">
+          <Reveal>
+            <div className="veda-tile flex flex-col gap-8 bg-[#8FD4F2] p-8 sm:flex-row sm:items-center sm:justify-between sm:p-12">
+              <h2 className="max-w-xl font-[family-name:var(--font-sora)] text-3xl font-extrabold leading-tight text-[#24232B] sm:text-4xl">
                 Have an idea worth building?
               </h2>
+              <Link href="/contact" className="tile-hover inline-flex shrink-0 items-center gap-2 rounded-xl bg-[#24232B] px-7 py-3.5 text-sm font-bold text-white">
+                Talk to Veda
+                <span className="arrow-shift">→</span>
+              </Link>
             </div>
-
-            <Button href="/contact">Talk to us →</Button>
-          </div>
+          </Reveal>
         </div>
       </section>
     </>

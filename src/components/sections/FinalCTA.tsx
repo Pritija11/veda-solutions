@@ -1,54 +1,45 @@
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import Reveal from "@/components/ui/Reveal";
 
 export default function FinalCTA() {
   return (
-    <section className="relative overflow-hidden bg-[#0B1728] py-24 sm:py-28">
-      {/* Background details */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-teal-500/5 blur-3xl" />
+    <section className="bg-[#FFFDF7] py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <Reveal>
+          <div className="veda-tile relative overflow-hidden bg-[#24232B] px-8 py-16 sm:px-16 sm:py-20">
+            {/* Minimal system diagram — flat modules, no glow/gradient */}
+            <div className="pointer-events-none absolute inset-0" aria-hidden>
+              <Reveal variant="assemble-rotate" delay={80} className="absolute right-[12%] top-10 sm:right-[18%]" style={{ ["--tile-rotate" as string]: "3deg" }}>
+                <span className="block h-14 w-14 rounded-2xl border-[1.5px] border-white/15 bg-[#FF7043]/90" />
+              </Reveal>
+              <Reveal variant="assemble-rotate" delay={220} className="absolute right-[6%] top-28 sm:right-[10%]">
+                <span className="pulse-dot block h-9 w-9 rounded-full border-[1.5px] border-white/15 bg-[#28AFA3]/90" />
+              </Reveal>
+              <Reveal variant="assemble-rotate" delay={360} className="absolute bottom-14 right-[20%] sm:right-[26%]" style={{ ["--tile-rotate" as string]: "-2deg" }}>
+                <span className="block h-10 w-10 rounded-xl border-[1.5px] border-white/15 bg-[#4E7BFF]/90" />
+              </Reveal>
+            </div>
 
-        <div className="absolute left-[10%] top-1/4 h-32 w-32 rounded-full border border-teal-400/10" />
-        <div className="absolute bottom-1/4 right-[10%] h-40 w-40 rounded-full border border-indigo-400/10" />
-      </div>
+            <div className="relative">
+              <h2 className="max-w-2xl font-[family-name:var(--font-sora)] text-4xl font-extrabold leading-[1.08] text-white sm:text-6xl">
+                Have something worth building?
+              </h2>
 
-      <div className="relative mx-auto max-w-4xl px-6 text-center lg:px-8">
-        {/* Label */}
-        <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-teal-400/20 bg-teal-500/5 px-4 py-2">
-          <Sparkles className="h-4 w-4 text-teal-400" />
-          <span className="text-xs font-semibold uppercase tracking-[0.16em] text-teal-400">
-            Let&apos;s build something meaningful
-          </span>
-        </div>
+              <p className="mt-6 max-w-xl text-lg leading-8 text-white/70">Let&apos;s turn the problem into a system.</p>
 
-        <h2 className="font-[family-name:var(--font-dm-serif)] text-4xl leading-tight tracking-tight text-slate-100 sm:text-5xl lg:text-6xl">
-          Have a digital challenge
-          <span className="block text-teal-400">worth solving?</span>
-        </h2>
-
-        <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg">
-          Whether you are exploring AI, modernizing infrastructure, building
-          software, or looking for a better digital direction, let&apos;s
-          start with the problem.
-        </p>
-
-        {/* CTA */}
-        <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-teal-500 px-7 py-3.5 text-sm font-semibold text-[#07111F] transition-all duration-200 hover:bg-teal-400 hover:shadow-lg hover:shadow-teal-500/20"
-          >
-            Start a conversation
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-
-          <Link
-            href="/solutions"
-            className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#1E334A] bg-white/[0.03] px-7 py-3.5 text-sm font-semibold text-slate-300 transition-all duration-200 hover:border-teal-400/30 hover:bg-teal-500/5 hover:text-teal-400"
-          >
-            Explore our solutions
-          </Link>
-        </div>
+              <div className="mt-10 flex flex-wrap items-center gap-6">
+                <Link
+                  href="/contact"
+                  className="tile-hover inline-flex items-center gap-2 rounded-xl bg-[#FF7043] px-8 py-4 text-base font-bold text-white"
+                >
+                  Talk to Veda
+                  <span className="arrow-shift">→</span>
+                </Link>
+                <span className="tech-label text-white/40">AI / SOFTWARE / CLOUD / DATA</span>
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

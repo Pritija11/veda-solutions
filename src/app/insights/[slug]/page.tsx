@@ -1,160 +1,144 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, BookOpen } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { notFound } from "next/navigation";
 
 import { insights } from "@/data/insights";
+import { createPageMetadata } from "@/lib/seo";
+import Reveal from "@/components/ui/Reveal";
 
 type InsightPageProps = {
-  params: Promise<{
-    slug: string;
-  }>;
+  params: Promise<{ slug: string }>;
 };
 
-const insightContent: Record<
-  string,
-  {
-    introduction: string;
-    sections: {
-      title: string;
-      paragraphs: string[];
-    }[];
-  }
-> = {
-  "practical-ai-adoption": {
-    introduction:
-      "AI adoption does not have to begin with a large transformation project. Organizations can start by identifying specific problems where intelligent systems can provide measurable value, then gradually build the technical foundations needed to support them.",
+const categoryColor: Record<string, string> = {
+  AI: "var(--powder-blue)",
+  CLOUD: "var(--soft-mint)",
+  SOFTWARE: "var(--butter-yellow)",
+  DATA: "var(--soft-apricot)",
+  SYSTEMS: "var(--baby-pink)",
+};
+
+const insightContent: Record<string, { intro: string; sections: { title: string; paragraphs: string[] }[] }> = {
+  "where-ai-creates-value": {
+    intro:
+      "Most AI investments don't move the needle. The ones that do share a pattern: they start from a specific, measurable problem instead of a technology mandate.",
     sections: [
       {
-        title: "Start with the problem",
+        title: "Start with the bottleneck, not the model",
         paragraphs: [
-          "The most useful AI initiatives begin with a clear problem rather than a technology-first objective. Teams should understand where time is being lost, where decisions depend on large amounts of information, or where repetitive work could be improved.",
-          "A focused problem makes it easier to define what success looks like and evaluate whether AI is actually the right solution.",
+          "The most useful AI initiatives begin with a clear bottleneck — a decision that takes too long, a process that depends on one overloaded person, a pattern that's too subtle for rules-based automation.",
+          "A specific bottleneck makes it possible to define what success actually looks like before a line of code is written.",
         ],
       },
       {
-        title: "Build the right foundations",
+        title: "The foundations matter more than the model",
         paragraphs: [
-          "Useful AI systems depend on more than models. Data quality, application architecture, cloud infrastructure, security, and integration all influence how effectively an AI capability can operate.",
-          "Building these foundations alongside the AI initiative helps organizations create systems that can evolve instead of isolated experiments that are difficult to maintain.",
+          "Data quality, integration, and monitoring decide whether an AI feature survives contact with real usage far more than model choice does.",
+          "Teams that invest in those foundations end up with systems that keep working. Teams that don't end up with a demo that quietly stops being used.",
         ],
       },
       {
-        title: "Improve continuously",
+        title: "Measure the outcome, not the technology",
         paragraphs: [
-          "AI adoption should be treated as an evolving process. As teams learn from real usage, they can improve workflows, data, integrations, and system performance.",
-          "The goal is not simply to introduce AI, but to create a practical capability that continues to provide value over time.",
+          "Time saved, error rates reduced, and decisions made faster are the real scoreboard — not which model or vendor was used.",
+          "Starting with that measure keeps the investment honest.",
         ],
       },
     ],
   },
-
-  "ai-powered-automation": {
-    introduction:
-      "Traditional automation follows predefined rules. AI can add another layer by helping systems interpret information, recognize patterns, and respond to situations that are harder to describe with fixed rules alone.",
+  "infrastructure-as-product-problem": {
+    intro:
+      "Cloud architecture decisions eventually surface as user-facing reliability and speed. The line between 'infrastructure' and 'product' is thinner than most teams assume.",
     sections: [
       {
-        title: "Beyond fixed workflows",
+        title: "Users feel infrastructure, they just don't name it",
         paragraphs: [
-          "Traditional automation works particularly well when a process is predictable. AI-powered automation becomes useful when workflows involve documents, natural language, classification, recommendations, or changing inputs.",
-          "Combining the two approaches can create workflows that retain predictable automation while introducing more flexibility where it is useful.",
+          "A slow page load, a flaky checkout, a report that times out — these read as product failures, but the root cause usually sits in infrastructure.",
+          "Treating infrastructure work as invisible plumbing is how it stays underfunded until it becomes an emergency.",
         ],
       },
       {
-        title: "Keep people involved",
+        title: "Automate delivery, not just deployment",
         paragraphs: [
-          "Not every automated decision should happen without human oversight. Important workflows may benefit from review points where people can verify results or handle unusual cases.",
-          "This creates a balance between efficiency and responsible use of intelligent systems.",
+          "CI/CD reduces the manual, error-prone parts of shipping software, but its real value is the feedback loop it creates — problems surface in minutes, not in a Friday afternoon release.",
         ],
       },
       {
-        title: "Design for measurable value",
+        title: "Reliability is a continuous practice",
         paragraphs: [
-          "Automation should have a clear purpose. Time saved, reduced manual effort, improved response times, or better consistency can provide useful measures of whether an initiative is working.",
-          "Starting with measurable outcomes helps teams focus their investment on automation that genuinely improves the way work is done.",
+          "Monitoring, logging, and incident response aren't a checklist you finish once — they're an ongoing discipline that scales with how much the business depends on the system.",
         ],
       },
     ],
   },
-
-  "cloud-devops-modern-systems": {
-    introduction:
-      "Modern applications need infrastructure that can support frequent changes without sacrificing reliability. Cloud and DevOps practices provide the foundation for building, deploying, and operating software more efficiently.",
+  "designing-systems-for-growing-businesses": {
+    intro:
+      "Software built for ten users behaves differently at ten thousand. Designing for the system you'll need avoids a painful rebuild later.",
     sections: [
       {
-        title: "Infrastructure as a foundation",
+        title: "Requirements you can't see yet still shape the design",
         paragraphs: [
-          "Applications depend on infrastructure for computing, networking, storage, security, and other services. A well-designed cloud environment gives teams the flexibility to adapt infrastructure as application requirements change.",
-          "The right architecture depends on the application's needs rather than simply adopting technology because it is popular.",
+          "Clear requirements today help teams make better architecture decisions, but the good ones also leave room for the requirements that show up in year two.",
         ],
       },
       {
-        title: "Automate delivery",
+        title: "Design for change, not just for launch",
         paragraphs: [
-          "DevOps practices can reduce repetitive manual work across testing, deployment, and infrastructure management. Automated delivery pipelines make changes more consistent and easier to track.",
-          "Automation also gives development teams faster feedback, helping them identify problems earlier in the software lifecycle.",
+          "Modular architecture, clear interfaces, and reliable data models are what make it possible to add a feature in month eighteen without rewriting month one's decisions.",
         ],
       },
       {
-        title: "Reliability is continuous",
+        title: "Speed and durability aren't actually opposites",
         paragraphs: [
-          "Deploying an application is only one part of operating a digital system. Monitoring, logging, security, backups, and performance management all contribute to long-term reliability.",
-          "Cloud and DevOps practices work best when these concerns are treated as part of the complete application lifecycle.",
+          "Moving fast without a maintainable foundation just moves the slowdown to later, when it's more expensive to fix.",
         ],
       },
     ],
   },
-
-  "data-foundations-for-ai": {
-    introduction:
-      "AI systems depend heavily on the quality and availability of the data behind them. Strong data foundations make it easier to build useful intelligent systems and maintain them as requirements evolve.",
+  "business-data-to-operational-intelligence": {
+    intro:
+      "Most companies already have more data than they use. The gap is usually pipelines and framing, not a lack of information.",
     sections: [
       {
-        title: "Reliable data comes first",
+        title: "Reliable data comes before advanced analytics",
         paragraphs: [
-          "Poorly structured, incomplete, or inconsistent data can limit the usefulness of an AI system. Before introducing advanced models, organizations should understand where their data comes from and how it is collected, stored, and processed.",
-          "Improving these foundations can benefit both AI initiatives and everyday analytics.",
+          "Incomplete or inconsistent data limits everything built on top of it. Understanding where data comes from and how it's collected pays off before any dashboard gets built.",
         ],
       },
       {
-        title: "Connect data across systems",
+        title: "Connect the systems, not just the reports",
         paragraphs: [
-          "Organizations often have useful information distributed across multiple applications and platforms. Data pipelines can help bring relevant information together in structured and repeatable ways.",
-          "This creates a stronger foundation for analytics, reporting, automation, and AI-powered applications.",
+          "Useful information is usually scattered across tools that don't talk to each other. Pipelines that bring it together in a repeatable way are what turn scattered data into a real asset.",
         ],
       },
       {
-        title: "Think about the full lifecycle",
+        title: "Governance is what keeps it trustworthy",
         paragraphs: [
-          "Data systems need to remain useful as applications and requirements change. Monitoring, governance, security, and maintainability should therefore be considered alongside data collection and processing.",
-          "A strong data foundation is an ongoing engineering capability rather than a one-time project.",
+          "As data systems grow, knowing who can access what — and whether it's still accurate — becomes as important as collecting it in the first place.",
         ],
       },
     ],
   },
-
-  "building-digital-solutions": {
-    introduction:
-      "Digital products become more difficult to maintain as users, features, integrations, and technical requirements grow. Strong engineering foundations help systems evolve without allowing complexity to grow unchecked.",
+  "software-architecture-outlives-v1": {
+    intro:
+      "The decisions made in week one of a build are the ones teams live with for years. A practical look at designing for change instead of just for launch day.",
     sections: [
       {
-        title: "Start with clear requirements",
+        title: "Early decisions carry more weight than they seem to",
         paragraphs: [
-          "Good software begins with understanding what the system actually needs to accomplish. Clear requirements help teams make better decisions about architecture, functionality, and priorities.",
-          "This also reduces the risk of building features that add complexity without solving meaningful problems.",
+          "The data model, the API boundaries, and the deployment shape chosen at the start tend to stay — changing them later usually means a rewrite, not a refactor.",
         ],
       },
       {
-        title: "Design for change",
+        title: "Interfaces outlast implementations",
         paragraphs: [
-          "Modern software rarely stays unchanged. Requirements evolve, integrations are added, and usage patterns develop over time.",
-          "Modular architecture, clear interfaces, reliable data models, and appropriate testing can make these changes easier to manage.",
+          "Clear boundaries between systems let the pieces behind them change without breaking everything downstream. That's the difference between an upgrade and an outage.",
         ],
       },
       {
-        title: "Balance speed and quality",
+        title: "Plan for the second version while building the first",
         paragraphs: [
-          "Moving quickly is valuable, but speed without maintainability can create technical problems later. Good engineering looks for a practical balance between delivering useful functionality and maintaining a healthy technical foundation.",
-          "This allows software to keep evolving as the organization and its users grow.",
+          "Teams that assume requirements will change build systems that can absorb that change. Teams that assume v1 is final usually pay for that assumption later.",
         ],
       },
     ],
@@ -162,9 +146,7 @@ const insightContent: Record<
 };
 
 export function generateStaticParams() {
-  return insights.map((insight) => ({
-    slug: insight.slug,
-  }));
+  return insights.map((insight) => ({ slug: insight.slug }));
 }
 
 export async function generateMetadata({ params }: InsightPageProps) {
@@ -172,34 +154,14 @@ export async function generateMetadata({ params }: InsightPageProps) {
   const insight = insights.find((item) => item.slug === slug);
 
   if (!insight) {
-    return {};
+    return createPageMetadata("Insight", "Perspectives from Veda Solutions Hub, a technology startup.", `/insights/${slug}`);
   }
 
-  return {
-    title: insight.title,
-    description: `Veda Solutions Hub, a technology startup, explores ${insight.title.toLowerCase()} and what it means for modern digital systems.`,
-    alternates: {
-      canonical: `https://vedasolutionshub.com/insights/${insight.slug}`,
-    },
-    openGraph: {
-      title: `${insight.title} | Veda Solutions Hub`,
-      description: insight.excerpt,
-      url: `https://vedasolutionshub.com/insights/${insight.slug}`,
-      siteName: "Veda Solutions Hub",
-      type: "article",
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
-  };
+  return createPageMetadata(insight.title, insight.excerpt, `/insights/${insight.slug}`);
 }
 
-export default async function InsightDetailPage({
-  params,
-}: InsightPageProps) {
+export default async function InsightDetailPage({ params }: InsightPageProps) {
   const { slug } = await params;
-
   const insight = insights.find((item) => item.slug === slug);
   const content = insightContent[slug];
 
@@ -207,104 +169,69 @@ export default async function InsightDetailPage({
     notFound();
   }
 
+  const accent = categoryColor[insight.category] ?? "var(--powder-blue)";
+
   return (
     <>
-      <article className="bg-[#07111F] pt-36 pb-24 sm:pt-40 sm:pb-28">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <Link
-            href="/insights"
-            className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition-colors hover:text-teal-400"
-          >
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-[#FFFDF7] pb-16 pt-[150px] sm:pt-[168px]">
+        <div className="relative mx-auto max-w-4xl px-6 lg:px-8">
+          <Link href="/insights" className="inline-flex items-center gap-2 text-sm font-bold text-[#6B6A72] hover:text-[#24232B]">
             <ArrowLeft className="h-4 w-4" />
-            Back to insights
+            Back to Veda Signals
           </Link>
 
-          <div className="mt-10">
-            <div className="inline-flex items-center gap-2 rounded-full border border-teal-400/20 bg-teal-500/5 px-4 py-2">
-              <BookOpen className="h-4 w-4 text-teal-400" />
-
-              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-teal-400">
-                {insight.category}
-              </span>
-            </div>
-
-            <h1 className="mt-7 font-[family-name:var(--font-dm-serif)] text-5xl leading-[1.08] tracking-tight text-slate-100 sm:text-6xl">
+          <Reveal className="mt-8">
+            <span className="chip" style={{ backgroundColor: accent }}>
+              {insight.category} / {insight.number}
+            </span>
+            <h1 className="mt-7 max-w-3xl font-[family-name:var(--font-sora)] text-4xl font-extrabold leading-tight text-[#24232B] sm:text-5xl">
               {insight.title}
             </h1>
-
-            <p className="mt-7 max-w-3xl text-lg leading-8 text-slate-400">
-              {content.introduction}
-            </p>
-          </div>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#6B6A72]">{insight.excerpt}</p>
+          </Reveal>
         </div>
-      </article>
+      </section>
 
-      <section className="bg-[#0B1728] py-20 sm:py-24">
+      {/* Article */}
+      <article className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div className="space-y-16">
-            {content.sections.map((section, index) => (
-              <section key={section.title}>
-                <div className="flex items-start gap-5">
-                  <span className="mt-1 text-sm font-semibold tracking-widest text-teal-400">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+          <Reveal>
+            <p className="text-lg leading-9 text-[#24232B]">{content.intro}</p>
+            <p className="mt-4 text-sm text-[#6B6A72]">
+              Published by Veda Solutions Hub, a technology startup building AI, software, cloud and data systems.
+            </p>
+          </Reveal>
 
-                  <div className="max-w-3xl">
-                    <h2 className="text-2xl font-semibold tracking-tight text-slate-100 sm:text-3xl">
-                      {section.title}
-                    </h2>
-
-                    <div className="mt-5 space-y-4">
-                      {section.paragraphs.map((paragraph) => (
-                        <p
-                          key={paragraph}
-                          className="text-base leading-8 text-slate-400"
-                        >
-                          {paragraph}
+          <div className="mt-14 space-y-12">
+            {content.sections.map((section, i) => (
+              <Reveal key={section.title} delay={i * 60}>
+                <div className="grid gap-4 sm:grid-cols-[80px_1fr]">
+                  <span className="tech-label text-[#4E7BFF]">0{i + 1}</span>
+                  <div>
+                    <h2 className="font-[family-name:var(--font-sora)] text-2xl font-extrabold text-[#24232B]">{section.title}</h2>
+                    <div className="mt-4 space-y-4">
+                      {section.paragraphs.map((p) => (
+                        <p key={p} className="text-base leading-8 text-[#6B6A72]">
+                          {p}
                         </p>
                       ))}
                     </div>
                   </div>
                 </div>
-              </section>
+              </Reveal>
             ))}
           </div>
-        </div>
-      </section>
 
-      <section className="bg-[#07111F] py-24 sm:py-28">
-        <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-teal-400">
-            Continue exploring
-          </p>
-
-          <h2 className="font-[family-name:var(--font-dm-serif)] text-4xl leading-tight tracking-tight text-slate-100 sm:text-5xl">
-            Interested in putting these ideas into practice?
-          </h2>
-
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
-            Explore the technology capabilities behind our work or start a
-            conversation about a digital challenge.
-          </p>
-
-          <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link
-              href="/solutions"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-teal-500 px-7 py-3.5 text-sm font-semibold text-[#07111F] transition-all duration-200 hover:bg-teal-400 hover:shadow-lg hover:shadow-teal-500/20"
-            >
-              Explore solutions
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
-
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#1E334A] bg-white/[0.03] px-7 py-3.5 text-sm font-semibold text-slate-300 transition-all duration-200 hover:border-teal-400/30 hover:bg-teal-500/5 hover:text-teal-400"
-            >
-              Talk to us
+          <div className="mt-16 border-t border-[#24232B]/10 pt-8">
+            <Link href="/insights" className="group inline-flex items-center gap-2 text-sm font-bold text-[#24232B]">
+              <ArrowLeft className="h-4 w-4" />
+              View all signals
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
         </div>
-      </section>
+      </article>
     </>
   );
 }
