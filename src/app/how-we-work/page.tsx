@@ -79,10 +79,10 @@ export default function HowWeWorkPage() {
           <div className="flex flex-col gap-6">
             {stages.map((stage, i) => (
               <Reveal key={stage.n} delay={i * 90}>
-                <div className="grid gap-6 rounded-[20px] border-[1.5px] border-[#24232B] p-7 sm:grid-cols-[100px_1fr] sm:p-9" style={{ backgroundColor: stage.bg }}>
+                <div className="grid gap-6 rounded-[20px] border-[1.5px] border-[#24232B] p-7 sm:grid-cols-[150px_1fr] sm:p-9" style={{ backgroundColor: stage.bg }}>
                   <div>
                     <span className="tech-label text-[#24232B]/60">{stage.n}</span>
-                    <h2 className="mt-3 font-[family-name:var(--font-sora)] text-2xl font-extrabold text-[#24232B]">
+                    <h2 className="mt-3 break-words font-[family-name:var(--font-sora)] text-2xl font-extrabold text-[#24232B]">
                       {stage.label}
                     </h2>
                   </div>

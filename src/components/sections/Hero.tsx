@@ -25,7 +25,7 @@ export default function Hero() {
             </Reveal>
 
             <Reveal variant="assemble-left" delay={80}>
-              <h1 className="mt-6 font-[family-name:var(--font-sora)] text-6xl font-extrabold leading-[1.02] text-[#24232B] sm:text-7xl">
+              <h1 className="mt-6 break-words font-[family-name:var(--font-sora)] text-5xl font-extrabold leading-[1.02] text-[#24232B] sm:text-7xl">
                 Technology, made for what&apos;s next.
               </h1>
             </Reveal>
