@@ -8,7 +8,7 @@ import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata(
   "Solutions",
-  "Veda Solutions Hub is a technology startup building intelligent digital systems across AI, software, cloud and data.",
+  "Explore Veda Solutions Hub's four pillars — AI, cloud, software and data — and how this technology startup combines them into one working system.",
   "/solutions",
 );
 

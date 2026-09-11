@@ -6,7 +6,7 @@ import Reveal from "@/components/ui/Reveal";
 
 export const metadata: Metadata = createPageMetadata(
   "About",
-  "Veda Solutions Hub is a technology startup building intelligent digital systems across AI, software, cloud and data.",
+  "Meet Veda Solutions Hub — the technology startup behind a connected approach to AI, software, cloud and data, and the beliefs that shape how it builds.",
   "/about",
 );
 

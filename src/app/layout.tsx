@@ -61,6 +61,22 @@ export const metadata: Metadata = {
       "Veda Solutions Hub is a technology startup building intelligent digital systems across AI, software, cloud and data.",
     type: "website",
     siteName: "Veda Solutions Hub",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Veda Solutions Hub — AI + Software + Cloud + Data, working as one digital system",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Veda Solutions Hub | Technology Startup Building Digital Systems",
+    description:
+      "Veda Solutions Hub is a technology startup building intelligent digital systems across AI, software, cloud and data.",
+    images: ["/images/og-image.png"],
   },
 
   robots: {

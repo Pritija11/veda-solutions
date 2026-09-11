@@ -6,7 +6,7 @@ export default function OrganizationSchema() {
     description:
       "Veda Solutions Hub is a technology startup building intelligent digital systems across AI, software, cloud and data.",
     url: "https://vedasolutionshub.com",
-    logo: "https://vedasolutionshub.com/images/logo.png",
+    logo: "https://vedasolutionshub.com/images/logo-1.png",
   };
 
   return (
