@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# One-time provisioning for i-0cf47f2c0cb0cac0d (veda-it-lab), Amazon Linux 2023.
+# One-time provisioning for i-0758efc245894ce2a (veda-solutions), Amazon Linux 2023.
 #
 # Run this ONCE, logged in over SSH as ec2-user:
-#   ssh -i veda-it-lab-key.pem ec2-user@100.63.152.118
+#   ssh -i veda-solutions-key.pem ec2-user@100.57.99.216
 #   curl -fsSL https://raw.githubusercontent.com/Pritija11/veda-solutions/main/deploy/setup-ec2.sh -o setup-ec2.sh
 #   chmod +x setup-ec2.sh
 #   ./setup-ec2.sh
@@ -85,7 +85,7 @@ pm2 save
 echo ""
 echo "=================================================================="
 echo " Done. The app should now be live at: http://$(curl -s ifconfig.me)"
-echo " (or the instance's Elastic IP: 100.63.152.118)"
+echo " (or the instance's Elastic IP: 100.57.99.216)"
 echo ""
 echo " Check status any time with:"
 echo "   pm2 status"

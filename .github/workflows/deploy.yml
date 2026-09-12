@@ -1,4 +1,4 @@
-name: Deploy to EC2 (veda-it-lab)
+name: Deploy to EC2 (veda-solutions)
 
 # Runs automatically every time someone pushes to main.
 # No manual deploy step needed after this is set up.
