@@ -1,0 +1,41 @@
+name: Deploy to EC2 (veda-it-lab)
+
+# Runs automatically every time someone pushes to main.
+# No manual deploy step needed after this is set up.
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {} # lets you also trigger it manually from the Actions tab
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -e
+            cd ~/veda-solutions
+
+            echo "Pulling latest main..."
+            git fetch origin main
+            git reset --hard origin/main
+
+            echo "Installing dependencies..."
+            npm ci
+
+            echo "Building..."
+            npm run build
+
+            echo "Restarting app..."
+            pm2 startOrReload deploy/ecosystem.config.js --update-env
+            pm2 save
