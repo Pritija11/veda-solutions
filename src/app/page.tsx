@@ -1,29 +1,25 @@
-import Hero from "@/components/sections/Hero";
-import StartupIntro from "@/components/sections/StartupIntro";
-import SolutionsOverview from "@/components/sections/SolutionsOverview";
-import TheSystem from "@/components/sections/TheSystem";
-import WhySystem from "@/components/sections/WhySystem";
-import TechnologyPreview from "@/components/sections/TechnologyPreview";
-import Industries from "@/components/sections/Industries";
-import Principles from "@/components/sections/Principles";
-import SignalsPreview from "@/components/sections/SignalsPreview";
-import AboutIdentity from "@/components/sections/AboutIdentity";
-import FinalCTA from "@/components/sections/FinalCTA";
+import Hero from "@/components/home/Hero";
+import Solutions from "@/components/home/Solutions";
+import FeaturedWork from "@/components/home/FeaturedWork";
+import Process from "@/components/home/Process";
+import Industries from "@/components/home/Industries";
+import Technology from "@/components/home/Technology";
+import WhyVeda from "@/components/home/WhyVeda";
+import Insights from "@/components/home/Insights";
+import CTA from "@/components/home/CTA";
 
-export default function HomePage() {
+export default function Home() {
   return (
     <>
       <Hero />
-      <StartupIntro />
-      <SolutionsOverview />
-      <TheSystem />
-      <WhySystem />
-      <TechnologyPreview />
+      <Solutions />
+      <FeaturedWork />
+      <Process />
       <Industries />
-      <Principles />
-      <SignalsPreview />
-      <AboutIdentity />
-      <FinalCTA />
+      <Technology />
+      <WhyVeda />
+      <Insights />
+      <CTA />
     </>
   );
 }

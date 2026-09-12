@@ -1,63 +1,187 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-
 import { createPageMetadata } from "@/lib/seo";
-import Reveal from "@/components/ui/Reveal";
 
-export const metadata = createPageMetadata(
-  "Terms of Use",
-  "Read the terms of use for the Veda Solutions Hub website and understand the general conditions for using our website and its content.",
+export const metadata: Metadata = createPageMetadata(
+  "Terms of Service",
+  "Read the terms of service for Veda Solutions Hub, a technology startup and IT solutions company.",
   "/terms",
 );
 
-const sections = [
-  { title: "1. Acceptance of these terms", body: "By accessing or using the Veda Solutions Hub website, you agree to use the website responsibly and in accordance with these Terms of Use. If you do not agree with these terms, please do not use the website." },
-  { title: "2. Website content", body: "The content published on this website is provided for general informational purposes. We aim to keep information useful and accurate, but website content may change as our solutions and business develop." },
-  { title: "3. Intellectual property", body: "Unless otherwise stated, content created for and published on this website, including text, branding, graphics, and other materials, belongs to or is used by Veda Solutions Hub and should not be reproduced, distributed, or modified without appropriate permission." },
-  { title: "4. Acceptable use", body: "You agree not to use the website in a way that could damage, disrupt, overload, or interfere with the website or its infrastructure. You should not attempt to gain unauthorized access to systems, data, or functionality that is not intended for public use." },
-  { title: "5. External services and links", body: "The website may reference or eventually integrate third-party services. Veda Solutions Hub is not responsible for the content, availability, security, or policies of external websites or services that are outside our control." },
-  { title: "6. No guarantee of uninterrupted availability", body: "We aim to keep the website available and functional, but we do not guarantee that it will always be uninterrupted, error-free, or available at every time." },
-  { title: "7. Information submitted through the website", body: "Information submitted through our contact or enquiry forms should be accurate and relevant to your request. Please do not submit confidential information that is not necessary for us to understand or respond to your enquiry." },
-  { title: "8. Changes to these terms", body: "These Terms of Use may be updated when our website, solutions, or business practices change. Any updated version will be published on this page with a revised update date." },
-];
-
 export default function TermsPage() {
   return (
-    <section className="bg-[#FFFDF7] pb-24 pt-[150px] sm:pt-[168px]">
-      <div className="mx-auto max-w-4xl px-6 lg:px-8">
-        <Link href="/" className="inline-flex items-center gap-2 text-sm font-bold text-[#6B6A72] hover:text-[#24232B]">
-          <ArrowLeft className="h-4 w-4" />
+    <section className="bg-[var(--background)]">
+      <div className="mx-auto max-w-4xl px-6 py-20 sm:px-8 sm:py-24 lg:py-28">
+        <Link
+          href="/"
+          className="group inline-flex items-center gap-2 text-sm font-semibold text-[var(--muted)] hover:text-[var(--primary)]"
+        >
+          <ArrowLeft
+            size={16}
+            className="transition-transform group-hover:-translate-x-1"
+          />
           Back to home
         </Link>
 
-        <Reveal className="mt-8">
-          <div className="tech-label text-[#6B6A72]">Legal</div>
-          <h1 className="mt-6 font-[family-name:var(--font-sora)] text-4xl font-extrabold text-[#24232B] sm:text-5xl">Terms of Use</h1>
-          <p className="mt-5 text-sm text-[#6B6A72]">Last updated: September 2026</p>
-        </Reveal>
+        <div className="mt-12">
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--primary)]">
+            Legal
+          </p>
 
-        <div className="mt-14 space-y-10">
-          {sections.map((s, i) => (
-            <Reveal key={s.title} delay={Math.min(i * 30, 200)}>
-              <section>
-                <h2 className="font-[family-name:var(--font-sora)] text-2xl font-extrabold text-[#24232B]">{s.title}</h2>
-                <p className="mt-4 leading-8 text-[#6B6A72]">{s.body}</p>
-              </section>
-            </Reveal>
-          ))}
+          <h1 className="mt-4 text-4xl font-extrabold tracking-[-0.04em] sm:text-5xl">
+            Terms & Conditions
+          </h1>
 
-          <Reveal>
-            <section className="veda-tile-soft p-7">
-              <h2 className="font-[family-name:var(--font-sora)] text-xl font-extrabold text-[#24232B]">Questions about these terms?</h2>
-              <p className="mt-3 text-sm leading-7 text-[#6B6A72]">
-                If you have questions about these Terms of Use or how they apply to the website, please contact
-                Veda Solutions Hub.
-              </p>
-              <Link href="/contact" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#4E7BFF]">
-                Contact us →
-              </Link>
-            </section>
-          </Reveal>
+          <p className="mt-4 text-sm text-[var(--muted)]">
+            Last updated: September 2026
+          </p>
+        </div>
+
+        <div className="mt-12 space-y-10">
+          <section>
+            <h2 className="text-2xl font-extrabold">
+              1. Introduction
+            </h2>
+
+            <p className="mt-4 text-base leading-8 text-[var(--muted)]">
+              These Terms & Conditions govern your use of the Veda Solutions
+              Hub website. By using this website, you agree to follow these
+              terms.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-extrabold">
+              2. Our Services
+            </h2>
+
+            <p className="mt-4 text-base leading-8 text-[var(--muted)]">
+              Veda Solutions Hub provides technology and IT solutions including
+              web development, business software, mobile applications, AI and
+              automation, and cloud and IT services.
+            </p>
+
+            <p className="mt-4 text-base leading-8 text-[var(--muted)]">
+              Specific project services, requirements, timelines, and pricing
+              may be agreed separately with each client.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-extrabold">
+              3. Website Use
+            </h2>
+
+            <p className="mt-4 text-base leading-8 text-[var(--muted)]">
+              You agree to use this website only for lawful purposes. You must
+              not attempt to interfere with the website, gain unauthorized
+              access, or use the website in a way that could damage its
+              operation or security.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-extrabold">
+              4. Intellectual Property
+            </h2>
+
+            <p className="mt-4 text-base leading-8 text-[var(--muted)]">
+              Unless otherwise stated, the content, branding, design, text,
+              graphics, and other materials on this website belong to Veda
+              Solutions Hub or are used with appropriate permission.
+            </p>
+
+            <p className="mt-4 text-base leading-8 text-[var(--muted)]">
+              Website content may not be copied, reproduced, or redistributed
+              without appropriate permission.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-extrabold">
+              5. Project Agreements
+            </h2>
+
+            <p className="mt-4 text-base leading-8 text-[var(--muted)]">
+              Client projects may have separate agreements covering scope,
+              deliverables, payment, ownership, maintenance, timelines, and
+              other project-specific requirements.
+            </p>
+
+            <p className="mt-4 text-base leading-8 text-[var(--muted)]">
+              Where a separate agreement exists, its terms will apply to the
+              relevant project.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-extrabold">
+              6. Third-Party Services
+            </h2>
+
+            <p className="mt-4 text-base leading-8 text-[var(--muted)]">
+              Some projects may depend on third-party platforms, APIs,
+              hosting providers, software, or other services. Their
+              availability and terms are controlled by the respective
+              providers.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-extrabold">
+              7. Information on This Website
+            </h2>
+
+            <p className="mt-4 text-base leading-8 text-[var(--muted)]">
+              We aim to keep the information on this website useful and
+              accurate. However, website content may change over time and
+              should not be considered a guarantee of specific project
+              outcomes.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-extrabold">
+              8. Limitation of Liability
+            </h2>
+
+            <p className="mt-4 text-base leading-8 text-[var(--muted)]">
+              To the extent permitted by applicable law, Veda Solutions Hub is
+              not responsible for losses resulting from the use or inability to
+              use this website or from reliance on general information
+              provided through the website.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-extrabold">
+              9. Changes to These Terms
+            </h2>
+
+            <p className="mt-4 text-base leading-8 text-[var(--muted)]">
+              We may update these Terms & Conditions when necessary. Updated
+              terms will be published on this page with a revised date.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-extrabold">
+              10. Contact Us
+            </h2>
+
+            <p className="mt-4 text-base leading-8 text-[var(--muted)]">
+              If you have questions about these Terms & Conditions, contact
+              Veda Solutions Hub at{" "}
+              <a
+                href="mailto:hello.vedasolutionshub@gmail.com"
+                className="font-semibold text-[var(--foreground)] hover:text-[var(--primary)]"
+              >
+                hello.vedasolutionshub@gmail.com
+              </a>
+              .
+            </p>
+          </section>
         </div>
       </div>
     </section>

@@ -1,41 +1,86 @@
 import type { MetadataRoute } from "next";
 
-import { solutions } from "@/data/solutions";
-import { insights } from "@/data/insights";
-
-const siteUrl = "https://vedasolutionshub.com";
-
 export default function sitemap(): MetadataRoute.Sitemap {
-  const mainPages = [
-    { path: "", priority: 1, changeFrequency: "weekly" as const },
-    { path: "/solutions", priority: 0.9, changeFrequency: "monthly" as const },
-    { path: "/how-we-work", priority: 0.8, changeFrequency: "monthly" as const },
-    { path: "/technology", priority: 0.8, changeFrequency: "monthly" as const },
-    { path: "/insights", priority: 0.8, changeFrequency: "monthly" as const },
-    { path: "/about", priority: 0.8, changeFrequency: "monthly" as const },
-    { path: "/contact", priority: 0.8, changeFrequency: "monthly" as const },
-    { path: "/careers", priority: 0.7, changeFrequency: "monthly" as const },
-    { path: "/privacy", priority: 0.3, changeFrequency: "yearly" as const },
-    { path: "/terms", priority: 0.3, changeFrequency: "yearly" as const },
+  const baseUrl = "https://vedasolutionshub.com";
+
+  return [
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/solutions`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/work`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/industries`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/insights`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/insights/why-every-business-needs-a-good-website`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/insights/what-is-cloud-computing`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/insights/how-ai-can-help-small-businesses`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/insights/how-to-choose-the-right-business-software`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/privacy`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/terms`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
   ];
-
-  const mainEntries: MetadataRoute.Sitemap = mainPages.map(({ path, priority, changeFrequency }) => ({
-    url: `${siteUrl}${path}`,
-    changeFrequency,
-    priority,
-  }));
-
-  const solutionEntries: MetadataRoute.Sitemap = solutions.map((solution) => ({
-    url: `${siteUrl}${solution.href}`,
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
-
-  const insightEntries: MetadataRoute.Sitemap = insights.map((insight) => ({
-    url: `${siteUrl}/insights/${insight.slug}`,
-    changeFrequency: "monthly",
-    priority: 0.6,
-  }));
-
-  return [...mainEntries, ...solutionEntries, ...insightEntries];
 }

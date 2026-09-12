@@ -1,27 +1,12 @@
 import type { Metadata } from "next";
-import { Sora, Inter, Space_Mono } from "next/font/google";
-
-import Navbar from "@/components/layout/Navbar";
+import { Plus_Jakarta_Sans } from "next/font/google";
+import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import OrganizationSchema from "@/components/seo/OrganizationSchema";
-
 import "./globals.css";
 
-const sora = Sora({
-  variable: "--font-sora",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const spaceMono = Space_Mono({
-  variable: "--font-space-mono",
-  weight: ["400", "700"],
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
   display: "swap",
 });
@@ -30,58 +15,63 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://vedasolutionshub.com"),
 
   title: {
-    default: "Veda Solutions Hub | Technology Startup Building Digital Systems",
+    default:
+      "Veda Solutions Hub | Technology & Software Solutions for Businesses",
     template: "%s | Veda Solutions Hub",
   },
 
   description:
-    "Veda Solutions Hub is a technology startup building intelligent digital systems across AI, software, cloud and data.",
-
-  alternates: {
-    canonical: "/",
-  },
+    "Veda Solutions Hub is a technology startup and IT solutions company building software, websites, mobile applications, AI solutions, and digital systems for modern businesses.",
 
   keywords: [
     "Veda Solutions Hub",
-    "Veda Solutions Hub technology startup",
-    "digital systems startup",
-    "AI software cloud data",
-    "intelligent digital systems",
-    "software engineering",
-    "cloud and DevOps",
-    "data and digital intelligence",
+    "IT solutions company",
+    "software development company",
+    "technology startup",
+    "software solutions",
+    "web development",
+    "mobile app development",
+    "AI solutions",
+    "business software",
+    "digital solutions",
   ],
 
-  authors: [{ name: "Veda Solutions Hub" }],
+  authors: [
+    {
+      name: "Veda Solutions Hub",
+    },
+  ],
+
   creator: "Veda Solutions Hub",
-
-  openGraph: {
-    title: "Veda Solutions Hub | Technology Startup Building Digital Systems",
-    description:
-      "Veda Solutions Hub is a technology startup building intelligent digital systems across AI, software, cloud and data.",
-    type: "website",
-    siteName: "Veda Solutions Hub",
-    images: [
-      {
-        url: "/images/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Veda Solutions Hub — AI + Software + Cloud + Data, working as one digital system",
-      },
-    ],
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Veda Solutions Hub | Technology Startup Building Digital Systems",
-    description:
-      "Veda Solutions Hub is a technology startup building intelligent digital systems across AI, software, cloud and data.",
-    images: ["/images/og-image.png"],
-  },
+  publisher: "Veda Solutions Hub",
 
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://vedasolutionshub.com",
+    siteName: "Veda Solutions Hub",
+    title:
+      "Veda Solutions Hub | Technology & Software Solutions for Businesses",
+    description:
+      "Veda Solutions Hub is a technology startup building software, digital products, AI solutions, and technology systems for modern businesses.",
+  },
+
+ 
+
+  alternates: {
+    canonical: "https://vedasolutionshub.com",
   },
 };
 
@@ -92,11 +82,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${sora.variable} ${inter.variable} ${spaceMono.variable} antialiased`}
-      >
+      <body className={jakarta.variable}>
         <OrganizationSchema />
-        <Navbar />
+        <Header />
         <main>{children}</main>
         <Footer />
       </body>

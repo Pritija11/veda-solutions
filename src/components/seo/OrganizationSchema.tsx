@@ -4,9 +4,23 @@ export default function OrganizationSchema() {
     "@type": "Organization",
     name: "Veda Solutions Hub",
     description:
-      "Veda Solutions Hub is a technology startup building intelligent digital systems across AI, software, cloud and data.",
+      "Veda Solutions Hub is a technology startup and IT solutions company building software, websites, mobile applications, AI solutions, and digital systems for modern businesses.",
     url: "https://vedasolutionshub.com",
     logo: "https://vedasolutionshub.com/images/logo-1.png",
+    knowsAbout: [
+      "Software Development",
+      "Web Development",
+      "Mobile App Development",
+      "Artificial Intelligence",
+      "Cloud Computing",
+      "IT Consulting",
+    ],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Imadole, Lalitpur",
+      addressCountry: "NP",
+    },
+    
   };
 
   return (
